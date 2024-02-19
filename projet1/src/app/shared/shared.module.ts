@@ -13,13 +13,16 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { AreaComponent } from './widget/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CustomSidenavComponent } from './components/custom-sidenav/custom-sidenav.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    AreaComponent
+    AreaComponent,
+    CustomSidenavComponent
   ],
   imports: [
     CommonModule,
@@ -31,12 +34,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatMenuModule,
     MatListModule,
     RouterModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatSidenavModule
   ],
   exports:[
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    CustomSidenavComponent,
     AreaComponent
   ]
 })

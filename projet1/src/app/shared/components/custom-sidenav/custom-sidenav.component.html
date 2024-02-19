@@ -1,0 +1,40 @@
+<!-- Profile Card -->
+<div class="profile-card">
+  <div class="header">
+    <h2>eya feki</h2>
+    <h4>eyafeki2017&#64;email.com</h4>
+  </div>
+  <img [width]="profilePicSize()" [height]="profilePicSize()" src="assets/feki.jpg" alt="Logo"/>
+</div>
+<mat-nav-list>
+  <!-- Divider -->
+  <mat-divider></mat-divider>
+
+  <!-- Pages Section -->
+  <h2 matSubheader>Pages</h2>
+  <a mat-list-item *ngFor="let item of menuItems">
+    <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+    <span matListItemTitle>{{item.label}}</span>
+  </a>
+  <!-- Divider -->
+  <mat-divider></mat-divider>
+
+  <!-- Tools Section -->
+  <h2 matSubheader>Tools</h2>
+  <a mat-list-item routerLink="/contacts" routerLinkActive="list-item-active">
+    <mat-icon>import_contacts</mat-icon>
+    Contacts
+  </a>
+  <a mat-list-item routerLink="/leads" routerLinkActive="list-item-active">
+    <mat-icon>contacts_phone</mat-icon>
+    Leads
+  </a>
+
+  <!-- Divider -->
+  <mat-divider></mat-divider>
+
+  <!-- Another Menu -->
+  <h2 matSubheader>Another Menu</h2>
+  <a mat-list-item>Option 1</a>
+  <a mat-list-item>Option 2</a>
+</mat-nav-list>
