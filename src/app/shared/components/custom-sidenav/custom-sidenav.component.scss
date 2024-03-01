@@ -1,0 +1,74 @@
+:host {
+  transition: all 500ms ease-in-out;
+}
+
+.sidenav-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+
+  img {
+    border-radius: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .header-text {
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.hide-header-text {
+  opacity: 0;
+  height: 0;
+}
+
+.menu-item {
+  border-left: 5px solid ;
+  border-left-color:rgb(0, 0, 0) ;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &.selected-menu-item {
+    border-left-color: blue;
+    background:rgb(0, 0, 0),0.05;
+  }
+
+  &.dashboard {
+    border-left: 5px solid green;
+  }
+
+  &.home {
+    border-left: 5px solid red;
+  }
+
+  &.list {
+    border-left: 5px solid orange;
+  }
+}
+
+.mat-icon {
+  margin-right: 16px;
+}
+
+
