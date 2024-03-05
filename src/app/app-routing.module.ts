@@ -5,6 +5,8 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ReadComponent } from './crud/read/read.component';
+import { TeamReadComponent } from './crud/team-read/team-read.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,10 @@ const routes: Routes = [
     {
       path:'home',
       component: PostsComponent
+    },
+    {
+      path:'list',
+      component: TeamReadComponent,
     }
   ]},
   { path: 'login', component: LoginComponent },

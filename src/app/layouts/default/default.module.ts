@@ -7,8 +7,8 @@ import { PostsComponent } from '../../modules/posts/posts.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule} from '@angular/material/card';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -23,8 +23,9 @@ import { MatCardModule} from '@angular/material/card';
     SharedModule,
     MatSidenavModule,
     MatDividerModule,
-    FlexLayoutModule,
-    MatCardModule 
-  ]
+    MatCardModule ,
+    FontAwesomeModule,
+  ],
+  providers:[]
 })
 export class DefaultModule { }
