@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { TeamServiceService } from '../services/team-service.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoreService } from '../core/core.service';
-import { ImageModel, Team } from '../team';
+import { Team, TeamImage } from '../team';
 
 @Component({
   selector: 'app-team-add-edit',
@@ -31,8 +31,8 @@ export class TeamAddEditComponent implements OnInit {
     this.TeamForm = this._fb.group({
       id: 0,
       name: ['', Validators.required],
-      description: ['', Validators.required],
-      teamImages: [''],
+      description: ['',[ Validators.required,  Validators.maxLength(500)]],
+      image: [''],
     });
 
     if (data && data.Team) {
@@ -48,7 +48,7 @@ export class TeamAddEditComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getImageUrl(image: ImageModel): SafeUrl | null {
+  getImageUrl(image: TeamImage): SafeUrl | null {
     if (image && image.picByte) {
       const imageUrl = 'data:' + image.type + ';base64,' + image.picByte;
       return this._sanitizer.bypassSecurityTrustUrl(imageUrl);
@@ -78,17 +78,17 @@ export class TeamAddEditComponent implements OnInit {
     this.snackBar.open('Formation Ajoutée!', 'Close', config);
   }
 
-  addTeam(TeamData: Team, imageFiles: File[]): void {
-    this._TeamService.addTeam(TeamData, imageFiles)
-      .subscribe((response) => {
+  addTeam(teamData: Team, imageFiles: File[]): void {
+    this._TeamService.addTeam(teamData, imageFiles).subscribe(
+      (response) => {
         if (response) {
           this.showSuccessMessage();
           this._dialogRef.close();
           location.reload();
         }
-      }, error => {
-        console.error('Error adding Team:', error);
-      });
+      },
+      (error) => console.error('Error adding team:', error)
+    );
   }
  
   editTeam(TeamData: Team, imageFiles: File[]): void {

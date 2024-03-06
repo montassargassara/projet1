@@ -26,6 +26,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TeamAddEditComponent } from '../team-add-edit/team-add-edit.component';
 import { TeamReadComponent } from '../team-read/team-read.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,9 @@ import { TeamReadComponent } from '../team-read/team-read.component';
         MatSnackBarModule,
         HttpClientModule,
         SharedModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        MatCardModule,
+        
     ],
     providers:[],
     bootstrap:[ReadComponent],

@@ -18,7 +18,7 @@ export class TeamServiceService {
     return this.http.get(`http://localhost:9091/team/getAllTeams`);
   }
 
-  addTeam(teamData: any, teamImages: File[]): Observable<any> {
+  addTeam(teamData: any, teamImages: File[]){
     const formData: FormData = new FormData();
   
     // Append team data as a JSON string
@@ -28,7 +28,15 @@ export class TeamServiceService {
     for (let i = 0; i < teamImages.length; i++) {
       formData.append('imagePath', teamImages[i]);
     }
-  
+    console.log(formData)
+   console.log(teamData)
+   console.log(teamImages)
+   const formDataEntries = (formData as any).entries();
+if (formDataEntries) {
+  for (let pair of formDataEntries) {
+    console.log(pair[0], pair[1]);
+  }
+}
     // Make the HTTP request
     return this.http.post<Team>('http://localhost:9091/team/addTeam', formData);
   }

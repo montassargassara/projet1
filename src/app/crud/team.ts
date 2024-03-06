@@ -1,13 +1,15 @@
 import { SafeUrl } from "@angular/platform-browser";
+import { Employee } from "./employee";
 
 export interface Team {
     id: number;
     name: string;
     description: string;
-    teamImages?: ImageModel[];
+    teamImages?: TeamImage[];
+    employees: Employee[];
   }
   
-  export interface ImageModel {
+  export interface TeamImage {
     id: number;
     name: string;
     type?: string;

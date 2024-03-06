@@ -8,11 +8,13 @@ import { EmpcrudService } from '../services/empcrud.service';
 import { CoreService } from '../core/core.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
-  styleUrl: './read.component.scss'
+  styleUrls: ['./read.component.scss']
 })
 export class ReadComponent implements OnInit {
   selectedFileUrl: any = null;
@@ -22,19 +24,23 @@ export class ReadComponent implements OnInit {
     'lastname',
     'email',
     'gender',
+    'team',
     'photo',
     'action',
   ];
-  
-  Employees?: Employee[];
-  dataSource!: MatTableDataSource<any>;
-  selectedFileName: string | null = null;
 
-  imageFiles: File[] = [];
+ 
+  roles: string[] = [];
+  isLoggedIn = false;
+
+  dataSource!: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private tokenStorageService: TokenStorageService,
+    private route: ActivatedRoute,
+    private router: Router,
     private _dialog: MatDialog,
     private _empService: EmpcrudService,
     private _coreService: CoreService,
@@ -42,9 +48,27 @@ export class ReadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getEmployeeList();
+    this.route.paramMap.subscribe((param) => {
+      const teamId = Number(param.get('teamId'));
+      console.log("teamId:", teamId);
+      this.getEmployeesByTeam(teamId);
+    });
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+    }
   }
 
+  getEmployeesByTeam(teamId: number) {
+    this._empService.getByTeam(teamId.toString()).subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
   openAddEditEmpForm() {
     const dialogRef = this._dialog.open(EmpAddEditComponent);
     dialogRef.afterClosed().subscribe({
@@ -80,6 +104,7 @@ export class ReadComponent implements OnInit {
     this._empService.deleteEmployee(id).subscribe({
       next: (res) => {
         this._coreService.openSnackBar('Employee deleted!', 'done');
+        location.reload();
         this.getEmployeeList();
       },
       error: console.error,

@@ -20,8 +20,6 @@ import { EmpModule } from './crud/emp/emp.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-
-
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 .example-spacer {
     flex: 1 1 auto;
   }
-  
+.add-team-btn {
+  background-color: #bdd248 !important;
+  color: white !important;/* Changez la couleur du texte si nécessaire */
+}
   .main-body {
     padding-top: 20px;
     margin: 0 auto;

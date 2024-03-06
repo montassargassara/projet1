@@ -14,7 +14,7 @@
             </mat-form-field>
         </div>
         <div class="row">
-            <input type="file" formControlName="teamImages" (change)="onFileSelected($event)" accept="image/*">
+            <input type="file" formControlName="image" (change)="onFileSelected($event)" accept="image/*">
             <img *ngIf="imageUrl" [src]="imageUrl" alt="Employee Image" class="circular-image">
           </div>
     </div>

@@ -4,10 +4,12 @@ import { TeamServiceService } from '../services/team-service.service';
 import { TeamAddEditComponent } from '../team-add-edit/team-add-edit.component';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CoreService } from '../core/core.service';
-import { ImageModel, Team } from '../team';
+import { Team, TeamImage } from '../team';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-team-read',
@@ -28,11 +30,17 @@ export class TeamReadComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   selectedFileName: string | null = null;
 
+
+  roles: string[] = [];
+  isLoggedIn = false;
+
   imageFiles: File[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private tokenStorageService: TokenStorageService,
+    private router: Router,
     private _dialog: MatDialog,
     private _TeamService: TeamServiceService,
     private _coreService: CoreService,
@@ -41,6 +49,13 @@ export class TeamReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeamList();
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+    }
   }
 
   openAddEditTeamForm() {
@@ -53,17 +68,23 @@ export class TeamReadComponent implements OnInit {
       },
     });
   }
-
+  navigateToEmployees(teamId: number) {
+    this.router.navigate(['/employees', teamId]);
+  }
+  
   getTeamList() {
     this._TeamService.getAllTeams().subscribe({
       next: (res) => {
+        console.log('Received teams from server:', res);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        console.log('DataSource updated:', this.dataSource);
       },
       error: console.error,
     });
   }
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -78,11 +99,14 @@ export class TeamReadComponent implements OnInit {
     this._TeamService.deleteTeam(id).subscribe({
       next: (res) => {
         this._coreService.openSnackBar('Team deleted!', 'done');
+        console.log('Calling getTeamList() after deletion...');
+        location.reload();
         this.getTeamList();
       },
       error: console.error,
     });
   }
+  
 
   openEditForm(data: any) {
     const dialogRef = this._dialog.open(TeamAddEditComponent, {
@@ -97,7 +121,7 @@ export class TeamReadComponent implements OnInit {
     });
   }
 
-  getImageUrl(image: ImageModel): SafeUrl {
+  getImageUrl(image: TeamImage): SafeUrl {
     if (image && image.picByte) {
       const imageUrl = 'data:' + image.type + ';base64,' + image.picByte;
       return this._sanitizer.bypassSecurityTrustUrl(imageUrl);

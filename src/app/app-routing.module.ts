@@ -10,6 +10,10 @@ import { TeamReadComponent } from './crud/team-read/team-read.component';
 
 
 const routes: Routes = [
+  
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', redirectTo: 'login', pathMatch: 'full' },
  { path: '',
   component: DefaultComponent,
   children:[
@@ -24,12 +28,12 @@ const routes: Routes = [
     {
       path:'list',
       component: TeamReadComponent,
+    }, 
+    { 
+      path: 'employees/:teamId', 
+      component: ReadComponent
     }
-  ]},
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', redirectTo: 'login', pathMatch: 'full' }
-
+  ]}
 
 
 ];
