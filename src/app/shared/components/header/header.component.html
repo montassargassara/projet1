@@ -1,11 +1,12 @@
 <mat-toolbar class="mat-elevation-z3">
   <mat-toolbar-row>
-    <!-- Utilisez une expression conditionnelle pour changer l'icône en fonction de l'état de la barre latérale -->
+    <!-- Use a conditional expression to change the icon based on the sidebar state -->
     <button mat-icon-button (click)="toggleMenu()">
       <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
     </button>
-    <span>ACTIA</span>
-
+    <!-- Replace the span with an img tag -->
+    <img src="assets/images/logo-actia.png" alt="ACTIA" class="toolbar-logo">
+    <!-- Rest of the toolbar content -->
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <ul fxLayout="row" fxLayoutGap="20px">
         <li>
@@ -23,7 +24,7 @@
             <mat-icon>person_outline</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item *ngIf="!isLoggedIn" routerLink="register">
+            <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
               Sign Up
             </button>
             <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">

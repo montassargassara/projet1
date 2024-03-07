@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { TokenStorageService } from '../../../_services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,8 +23,8 @@ export class HeaderComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
-
-  constructor(private tokenStorageService: TokenStorageService) { }
+  isSuccessful = false;
+  constructor(private tokenStorageService: TokenStorageService,  private router: Router ) { }
   ngOnInit():void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.router.navigate(['/login']); // Navigate to the login page
   }
+  
 }

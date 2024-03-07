@@ -9,6 +9,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule} from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from '../../modules/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DefaultComponent,
     DashboardComponent,
     PostsComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatDividerModule,
     MatCardModule ,
     FontAwesomeModule,
+    FormsModule
   ],
   providers:[]
 })

@@ -17,7 +17,7 @@ export type MenuItem = {
 export class CustomSidenavComponent implements OnInit{
   username?: string; // Initialisez les propriétés ou déclarez-les comme optionnelles en ajoutant ? après leur nom
   email?: string;
-  profilePicUrl?: string;
+  profilePicUrl?: string = "assets/images/user.png";
   roles: string[] = [];
   isLoggedIn = false;
   sideNavCollapsed = signal(false);
@@ -60,7 +60,9 @@ export class CustomSidenavComponent implements OnInit{
       return this.profilePicUrl;
     } else {
       const firstLetter = this.username ? this.username.charAt(0).toUpperCase() : '';
-      return `https://ui-avatars.com/api/?name=${firstLetter}&background=random&size=${this.profilePicSize}`;
+      const size = this.isCollapsed ? '32' : '100';
+      return `https://ui-avatars.com/api/?name=${firstLetter}&background=random&color=fff&size=${size}`;
     }
   }
+  
 }

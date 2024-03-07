@@ -12,7 +12,6 @@ export function provideHttpClient(httpClient: HttpClient) {
   };
 }
 
-
 @NgModule({
   imports: [
     BrowserModule,

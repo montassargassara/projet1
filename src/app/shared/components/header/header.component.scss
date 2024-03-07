@@ -64,6 +64,10 @@ mat-sidenav, mat-sidenav-content {
       font-size: 1.25rem;
       font-weight: bold;
     }
+    img{
+        height: 40px; /* Adjust the height as needed */
+        margin-right: 16px; /* Space between the logo and the rest of the toolbar content */
+    }
     ul {
       display: flex;
       align-items: center;
@@ -76,6 +80,9 @@ mat-sidenav, mat-sidenav-content {
     }
   }
 }
+
+
+
 
 // Classe pour masquer le contenu de la page principale lorsque la barre latérale est ouverte
 .show-sidebar-content {
