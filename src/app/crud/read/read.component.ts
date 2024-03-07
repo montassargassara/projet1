@@ -25,7 +25,7 @@ export class ReadComponent implements OnInit {
     'email',
     'gender',
     'team',
-    'photo',
+    'employeeImages',
     'action',
   ];
 
@@ -123,13 +123,13 @@ export class ReadComponent implements OnInit {
       },
     });
   }
-
-  getImageUrl(image: EmployeeImage): SafeUrl {
-    if (image && image.picByte) {
-      const imageUrl = 'data:' + image.type + ';base64,' + image.picByte;
+  defaultImage: string = 'path_to_default_image.jpg';
+  getImageUrl(image?: EmployeeImage): SafeUrl {
+    if (image?.picByte) {
+      const imageUrl = `data:${image.type};base64,${image.picByte}`;
       return this._sanitizer.bypassSecurityTrustUrl(imageUrl);
     }
-    return '';
+    // Return a default image if image is null or undefined
+    return 'path_to_default_image.jpg';
   }
-
 }

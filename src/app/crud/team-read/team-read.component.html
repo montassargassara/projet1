@@ -1,62 +1,36 @@
-
 <div class="main-body">
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
-<span class="example-spacer" *ngIf="roles.includes('ROLE_ADMIN')">
-<button mat-raised-button class="add-team-btn" (click)="openAddEditTeamForm()">
-  ADD Team
-</button>
-</span>
-<div class="table-container">
-  <table mat-table [dataSource]="dataSource" matSort>
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-      </ng-container>
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>  Description </th>
-      <td mat-cell *matCellDef="let row"> {{row.description}}</td>
-    </ng-container>
-    <ng-container matColumnDef="teamImages">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> photo </th>
-      <td mat-cell *matCellDef="let row">  <img [src]="getImageUrl(row.teamImages[0])" alt="Team Photo" class="circular-image"> </td>
-    </ng-container>
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-      <td mat-cell *matCellDef="let row">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  <span class="example-spacer" *ngIf="roles.includes('ROLE_ADMIN')">
+    <button mat-raised-button class="add-team-btn" (click)="openAddEditTeamForm()">
+      ADD Team
+    </button>
+  </span>
+  <div class="card-container">
+    <mat-card *ngFor="let team of dataSource.filteredData" class="team-card">
+      <mat-card-header>
+        <mat-card-title>{{ team.name }}</mat-card-title>
+        <mat-card-subtitle>ID: {{ team.id }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="getImageUrl(team.teamImages[0])" alt="Team Photo" class="square-image">
+      <mat-card-content>
+        <p>{{ team.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
         <span *ngIf="roles.includes('ROLE_ADMIN')">
-          <button mat-icon-button color="primary" (click)="openEditForm(row)">
+          <button mat-icon-button color="primary" (click)="openEditForm(team)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteTeam(row.id)">
+          <button mat-icon-button color="warn" (click)="deleteTeam(team.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </span>
-        <button mat-icon-button color="accent" [routerLink]="['/employees', row.id]"><mat-icon>visibility</mat-icon></button>
-      </td>
-    </ng-container>
-    
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 15, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        <button mat-icon-button color="accent" [routerLink]="['/employees', team.id]">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
-</div>
-

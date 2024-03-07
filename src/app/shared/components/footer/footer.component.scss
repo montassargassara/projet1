@@ -1,3 +1,107 @@
-footer{
-    padding: 20px;
-}
+.site-footer {
+    background-color: #333; // Dark background
+    color: #fff; // White text color
+    font-size: 0.8rem;
+    padding: 20px 0;
+  
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 1200px;
+      padding: 0 20px;
+
+      .footer-section {
+        flex: 1;
+  
+        h4 {
+          margin-bottom: 10px;
+          color: #f2f2f2; // Light grey color for the sub-headers
+        }
+  
+        p, .tags, .footer-links {
+          margin-bottom: 10px;
+        }
+  
+        .social-icons {
+            a {
+              display: inline-block;
+              margin: 0 5px;
+              color: #333; // Icon color
+              transition: color 0.3s ease;
+          
+              &:hover {
+                color: #555; // Icon hover color
+              }
+          
+              i {
+                font-size: 1.5em; // Icon size
+              }
+            }
+          }
+          
+  
+        .footer-links {
+          list-style-type: none;
+          padding: 0;
+  
+          li {
+            margin-bottom: 5px;
+            &:hover {
+              a {
+                color: #a2a2a2; // Lighter grey color on hover for links
+              }
+            }
+          }
+  
+          a {
+            color: inherit; // Inherit white color
+            text-decoration: none; // Remove underline from links
+            transition: color 0.2s; // Smooth transition for color change
+          }
+        }
+  
+        .tag {
+            display: inline-block;
+            background-color: #555;
+            color: white;
+            padding: 5px;
+            margin: 2px;
+            font-size: 0.8em;
+            border-radius: 3px;
+            text-decoration: none;
+            
+            &:hover {
+              background-color: darken(#555, 10%);
+            }
+          }
+          
+      }
+    }
+  
+    .footer-bottom {
+      text-align: center;
+      padding-top: 10px;
+  
+      p {
+        margin: 0; // Remove default margin
+      }
+    }
+  }
+  
+  // Example media query for responsiveness
+  @media (max-width: 768px) {
+    .site-footer .footer-content {
+      flex-direction: column;
+      align-items: center;
+  
+      .footer-section {
+        margin-bottom: 20px;
+  
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+    
