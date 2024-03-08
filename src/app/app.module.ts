@@ -8,6 +8,7 @@ import { DefaultModule } from './layouts/default/default.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmpModule } from './crud/emp/emp.module';
+import { LeaveRequestComponent } from './modules/leave-request/leave-request.component';
 
 @NgModule({
   declarations: [

@@ -10,15 +10,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule} from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from '../../modules/login/login.component';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeaveRequestComponent } from '../../modules/leave-request/leave-request.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     DashboardComponent,
     PostsComponent,
-    LoginComponent,
+    LoginComponent, 
+    LeaveRequestComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     MatCardModule ,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers:[]
 })

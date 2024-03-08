@@ -27,5 +27,11 @@ export class AuthService {
       password
     }, httpOptions);
   }
+  uploadProfileImage(userId: number, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post(`http://localhost:8080/api/auth/${userId}/uploadProfileImage`, formData);
+  }
   
 }

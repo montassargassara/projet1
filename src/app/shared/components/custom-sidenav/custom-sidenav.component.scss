@@ -10,6 +10,7 @@
   text-align: center;
   flex-grow: 0; // Default state, not taking up extra space
 
+
   img {
     padding: 5px 5px;
     border-radius: 50%;
@@ -45,39 +46,13 @@
   opacity: 0;
   height: 0;
 }
-
-.menu-item {
-  border-left: 5px solid ;
-  border-left-color:rgb(0, 0, 0) ;
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-
-  &.selected-menu-item {
-    border-left-color: blue;
-    background:rgb(0, 0, 0),0.05;
-  }
-
-  &.dashboard {
-    border-left: 5px solid green;
-  }
-
-  &.home {
-    border-left: 5px solid red;
-  }
-
-  &.list {
-    border-left: 5px solid orange;
-  }
+.custom-icon {
+  color: #1b1b19!important; /* Change this to your desired icon color */
 }
 
-.mat-icon {
-  margin-right: 16px;
+.custom-label {
+  color: #1b1b19!important; /* Change this to your desired label color */
 }
-
-
+.nav-list{
+  background-color: #bdd248!important;
+}

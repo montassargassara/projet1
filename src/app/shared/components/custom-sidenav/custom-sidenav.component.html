@@ -11,13 +11,14 @@
   <mat-divider></mat-divider>
 
   <!-- Pages Section -->
-  <a mat-list-item *ngFor="let item of menuItems" 
-  [routerLink]="item.route"
-  routerLinkActive="selected-menu-item"
-  #rla="routerLinkActive" 
-  [activated]="rla.isActive">
-    <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
-    <span matListItemTitle>{{item.label}}</span>
-  </a>
-</mat-nav-list>
-
+  <mat-nav-list class="nav-list">
+    <a mat-list-item *ngFor="let item of menuItems" 
+       [routerLink]="item.route"
+       routerLinkActive="selected-menu-item"
+       #rla="routerLinkActive" 
+       [activated]="rla.isActive">
+      <mat-icon class="custom-icon" matListItemIcon>{{item.icon}}</mat-icon>
+      <span class="custom-label" matListItemTitle>{{item.label}}</span>
+    </a>
+  </mat-nav-list>
+  

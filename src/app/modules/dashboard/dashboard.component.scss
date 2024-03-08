@@ -1,0 +1,41 @@
+section{
+    background-color: #BDD248;
+    color: white;
+    margin-top: 30px;
+    font-size: 20px;
+}
+.fdb-block {
+    .container {
+      .row {
+        text-align: left; // Align text to the left
+        align-items: center;
+  
+        .col-12, .col-md-6 {
+          h1 {
+            color: #ebab35; // Gold color for the title
+            margin-bottom: 20px; // Adds some space below the title
+          }
+  
+          p.lead {
+            font-size: 1.2rem; // Larger font size for the lead paragraph
+            line-height: 1.5; // Adds some space between lines
+          }
+  
+          .main-image {
+            text-align: right;
+            max-width: 10%; // Ensures the image is responsive
+            height: auto; // Maintains the aspect ratio
+            margin-bottom: 20px; // Adds some space below the image
+          }
+  
+          .secondary-image {
+            text-align: right;
+            max-width: 8%; // Adjust the width of secondary images
+            height: auto; // Maintains the aspect ratio
+            margin-bottom: 10px; // Adds some space below the image
+          }
+        }
+      }
+    }
+  }
+  

@@ -6,6 +6,7 @@ import { PostsComponent } from './modules/posts/posts.component';
 import { ReadComponent } from './crud/read/read.component';
 import { TeamReadComponent } from './crud/team-read/team-read.component';
 import { LoginComponent } from './modules/login/login.component';
+import { LeaveRequestComponent } from './modules/leave-request/leave-request.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, // Add your signup route
@@ -19,12 +20,16 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
-        path: 'home',
+        path: 'profile',
         component: PostsComponent
       },
       {
         path: 'list',
         component: TeamReadComponent,
+      },
+      {
+        path: 'congé',
+        component: LeaveRequestComponent,
       },
       {
         path: 'employees/:teamId',

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, computed, signal } from '@angular/core';
 import { observable } from 'mobx';
-import { AuthService } from '../../../_services/auth.service';
 import { TokenStorageService } from '../../../_services/token-storage.service';
 
 export type MenuItem = {
@@ -31,14 +30,19 @@ export class CustomSidenavComponent implements OnInit{
       route: 'dashboard'
     },
     {
-      icon: 'home',
-      label: 'Home',
-      route: 'home'
+      icon: 'person',
+      label: 'Profil',
+      route: 'profile'
     },
     {
       icon: 'list',
       label: 'List',
       route: 'list'
+    },
+    {
+      icon: 'preview',
+      label: 'damande congé',
+      route: 'congé'
     }
   ];
   profilePicSize = computed(() => this.sideNavCollapsed() ? '32' : '100')
